@@ -1,6 +1,6 @@
 # You're about to make your own MTA clock!
 
-![](https://assets.digitalocean.com/articles/alligator/boo.svg "Esp32 MTA Clock")
+![](https://github.com/boscacci/MTA-clock-esp32/blob/main/mta-clock.jpg "Esp32 MTA Clock")
 
 Here's how to do it:
 1. Register for an MTA API key.
