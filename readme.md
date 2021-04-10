@@ -84,7 +84,7 @@ Here's how to do it:
 
 # 5. Wire it up.
 
-  * Adafruit OLED Wiring Guide:
+  __Adafruit OLED Wiring Guide:__
 
   | OLED pin    | ESP32 pin     |
   | :------------- | :------------- |
