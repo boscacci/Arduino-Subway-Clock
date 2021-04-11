@@ -43,7 +43,7 @@ char displayList[8][20];
 byte listCount = 1;
 bool forceRefresh = true;
 bool switchState = true;
-char url[sizeof(serverName)+sizeof(stationID)];
+char url[sizeof(serverIP)+sizeof(stationID)+19];
 byte numberOfArrivals;
 
 void setup()
