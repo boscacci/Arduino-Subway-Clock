@@ -1,4 +1,5 @@
 // Enter your Wifi SSID and password here
+// NOTE: ESP32 Does not work with a 5Ghz wifi network only 2.4Ghz
 const char ssid[] = "your-wifi-network-here";
 const char password[] = "your-wifi-password-here";
 
