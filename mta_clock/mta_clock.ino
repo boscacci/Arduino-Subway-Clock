@@ -21,7 +21,7 @@
    14 (d7)          13
 
 */
-Adafruit_CharacterOLED lcd(OLED_V2, 14, 32, 15, 33, 27, 12, 13);
+Adafruit_CharacterOLED lcd(OLED_V2, 14, 32, 26, 33, 27, 12, 13);
 
 #define SWITCH_PIN 25 //sets pin for direction toggle switch connect other end to GND
 
@@ -131,7 +131,7 @@ void loop()
         unsigned int minutesAway = (arrivalTime - currentEpochTime) / 60;
 
         //Filters out trains that you can't possibly catch
-        if (minutesAway >= timeToStation)
+        if (minutesAway >= timeToStation && minutesAway < 1000) // Stopgap fix
         {
 
           //Constructs the display string
