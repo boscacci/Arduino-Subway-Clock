@@ -52,7 +52,7 @@ Here's how to do it:
   * Use this command in terminal while controlling your server: `git clone https://github.com/boscacci/MTAPI.git`
   * cd into the repo top-level directory: `cd MTAPI/`
   * Update your Ubuntu server so it can install stuff: `sudo apt-get update && sudo apt-get upgrade`
-  * Install python on your server: "sudo apt-get install python3-venv"
+  * Install python on your server: `sudo apt-get install python3-venv`
   * Create a new python virtual environment: `python3 -m venv .venv`
   * Create a new tmux session (allowing the code to run unattended): `tmux new -s session-name`
   * Activate the virtual environment: `source .venv/bin/activate`
