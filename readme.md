@@ -169,7 +169,7 @@ Here's how to do it:
 
   If you're still reading, thanks for reading me. Now, credit where credit is due! Thanks to:
 
-  Zach Kuperstein for toiling in an unfamiliar language and making the instructions as clear as possible!
+  Zach Kuperstein for toiling in an unfamiliar language to make this, and making the instructions as clear as possible!
 
   Jon Thornton for making the MTA's GTFS protobuf accessible.
 
