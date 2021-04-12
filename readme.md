@@ -167,9 +167,9 @@ Here's how to do it:
 
 # 12. Don't miss your train!
 
-  If you're still reading, thanks for reading me.  Now, credit where credit is due:
+  If you're still reading, thanks for reading me. Now, credit where credit is due! Thanks to:
 
-  Rob Boscacci & Zach Kuperstein for making this!
+  Zach Kuperstein for toiling in an unfamiliar language and making the instructions as clear as possible!
 
   Jon Thornton for making the MTA's GTFS protobuf accessible.
 
