@@ -125,24 +125,17 @@ void loop()
         String trainName = JSON.stringify(arrivalsArr[i]["route"]).substring(1, 2);
 
         //Extracts the arrival time of the train in epoch time
-        unsigned long arrivalTime = convertToEpoch(JSON.stringify(arrivalsArr[i]["time"]));
+        long arrivalTime = convertToEpoch(JSON.stringify(arrivalsArr[i]["time"]));
 
         //Calculates how many minutes to arrival by comparing arrival time to current time
-        unsigned int minutesAway = (arrivalTime - currentEpochTime) / 60;
+        int minutesAway = (arrivalTime - currentEpochTime) / 60;
 
         //Filters out trains that you can't possibly catch
-        if (minutesAway >= timeToStation && minutesAway < 1000) // Stopgap fix
+        if (minutesAway >= timeToStation)
         {
 
           //Constructs the display string
-          if (currentEpochTime > arrivalTime)
-          {
-            sprintf(display, "%d. (%s) %s MISSED", i + 1 - missed, trainName, (direction == "N") ? "UP" : "DN");
-          }
-          else
-          {
-            sprintf(display, "%d. (%s) %s %dMin", i + 1 - missed, trainName, (direction == "N") ? "UP" : "DN", minutesAway);
-          }
+          sprintf(display, "%d. (%s) %s %dMin", i + 1 - missed, trainName, (direction == "N") ? "UP" : "DN", minutesAway);
           Serial.println(display);
 
           //Adds the given arrival to the display list for the lcd
@@ -250,7 +243,7 @@ String httpGETRequest(char *_url)
 }
 
 //Manually parses the timeStamp from the train arrival and returns in epoch time
-unsigned long convertToEpoch(String timeStamp)
+long convertToEpoch(String timeStamp)
 {
 
   //Uses MTA's timestamp to determine if it's currently daylight savings time
