@@ -73,7 +73,7 @@ Here's how to do it:
   These are the parts you will need and some examples of where to find them:
   * ESP32 Dev Board (any ESP dev board will do) - https://www.amazon.com/HiLetgo-ESP-WROOM-32-Development-Microcontroller-Integrated/dp/B0718T232Z
   
-  * LCD Screen (16x2 Character Display)- https://www.adafruit.com/product/823
+  * LCD Screen (16x2 Character Display)- https://www.adafruit.com/product/823 - if they're not available through adafruit, try amazon or aliexpress for other 'standard' HD44780 1602 LCDs.
   
   * On/Off Switch (this is just the one we used) - https://www.amazon.com/Qiying-Miniature-SS-12F16-Position-Latching/dp/B08947137H
   
