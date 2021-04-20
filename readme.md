@@ -133,7 +133,7 @@ Here's how to do it:
 
   * Open the mta_clock.ino sketch from File > Sketchbook > mta_clock
   * Go to the preferences.h tab.
-  * Replace the default with your Wifi network info, server IP (found in your EC2 instances, use the IPv4 address), and other preferred settings.
+  * Replace the default with your Wifi network info, server IP (found in your EC2 instances, use the IPv4 address), and other preferred settings. [You can find the codes for StationID's here](https://github.com/boscacci/MTAPI/blob/master/data/stations.json).
   * Save your changes.
 
 # 9. Compile and upload the code.
