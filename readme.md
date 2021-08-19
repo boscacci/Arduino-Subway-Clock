@@ -81,6 +81,9 @@ Here's how to do it:
   
   * USB Cable
 
+
+  Total cost estimate: ~$50-80 depending on parts availability
+
 # 5. Wire it up.
 
   __Adafruit OLED Wiring Guide:__
