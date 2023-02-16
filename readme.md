@@ -49,7 +49,7 @@ Here's how to do it:
 # 3. Put and run MTA API code on the server.
 
   * Put the MTA API code on the server by cloning from git repo.
-  * Use this command in terminal while controlling your server: `git clone https://github.com/boscacci/MTAPI.git`
+  * Use this command in terminal while controlling your server: `git clone https://github.com/jonthornton/MTAPI`
   * cd into the repo top-level directory: `cd MTAPI/`
   * Update your Ubuntu server so it can install stuff: `sudo apt-get update && sudo apt-get upgrade`
   * Install python on your server: `sudo apt-get install python3-venv`
