@@ -72,7 +72,7 @@ void setup()
   Serial.println(" - Success!");
 
   // Make url for MTA data request
-  sprintf(url, "http://%s:8080/by-id/%s", serverIP, stationID);
+  sprintf(url, "https://demo.transiter.dev/systems/us-ny-subway/stops/D25/%s", stationID);
 
   delay(1000);
   lcd.clear();
@@ -108,6 +108,11 @@ void loop()
       }
 
       // Pulls out the relevant data as an JSONVar array
+      
+      // !TODO FIX THIS \/
+      // !TODO FIX THIS \/
+      // !TODO FIX THIS \/
+      
       JSONVar arrivalsArr = obj["data"][direction];
       numberOfArrivals = arrivalsArr.length();
 
