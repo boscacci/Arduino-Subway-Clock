@@ -59,7 +59,7 @@ void setup()
   // Initialize the lcd
   Serial.print("LCD - ");
   lcd.begin(16, 2);
-  Serial.println("Success!");
+  Serial.println("LCD success!");
 
   // Connect to the WiFi network
   connectWifi();
@@ -108,7 +108,7 @@ void loop()
       }
 
       // Pulls out the relevant data as an JSONVar array
-      JSONVar arrivalsArr = obj["data"][direction];
+      JSONVar arrivalsArr = obj["data"][0][direction];
       numberOfArrivals = arrivalsArr.length();
 
       // Initiate a count of arrivals that will be missed per timeToStation
@@ -247,6 +247,19 @@ String httpGETRequest(char *_url)
   }
 }
 
+bool isDST(const String &dateTime)
+{
+  if (dateTime.endsWith("-04:00\""))
+  {
+    return true;
+  }
+  else if (dateTime.endsWith("-04:00"))
+  {
+    return true;
+  }
+  return false;
+}
+
 // Manually parses the timeStamp from the train arrival and returns in epoch time
 long convertToEpoch(String timeStamp)
 {
@@ -258,8 +271,14 @@ long convertToEpoch(String timeStamp)
   t.tm_hour = timeStamp.substring(12, 14).toInt();
   t.tm_min = timeStamp.substring(15, 17).toInt();
   t.tm_sec = timeStamp.substring(18, 20).toInt();
-  time_t epoch = mktime(&t);
 
+  // Run a check to see if MTA arrival times are DST or not
+  bool dst = isDST(timeStamp);
+  t.tm_isdst = dst;
+  // Debug:
+  // Serial.println(dst ? "It is DST" : "It is not DST");
+
+  time_t epoch = mktime(&t);
   return epoch;
 }
 

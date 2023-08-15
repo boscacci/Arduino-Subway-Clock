@@ -4,12 +4,12 @@ const char ssid[] = "YOUR_WIFI_NETWORK_NAME_HERE";
 const char password[] = "YOUR_WIFI_PASSWORD_HERE";
 
 // Server IP address
-const char serverIP[] = "YOUR_SERVER_IP_ADDRESS_HERE";
+// const char serverIP[] = "YOUR_SERVER_IP_ADDRESS_HERE";
 
 // Find the four-character station ID from:
 // https://github.com/boscacci/MTAPI/blob/master/data/stations.json
 // And enter it here
-const char stationID[] = "69ba";
+const char stationID[] = "D25";
 
 // If not using a hardware toggle switch, choose prefered train direction, either "N" for Northbound, "S" for Southbound
 //#define DIRECTION "N"; //Comment out this line if you've set up a toggle switch instead
