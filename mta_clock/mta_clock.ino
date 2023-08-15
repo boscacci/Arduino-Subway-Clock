@@ -57,9 +57,9 @@ void setup()
   pinMode(SWITCH_PIN, INPUT_PULLUP);
 
   // Initialize the lcd
-  Serial.print("LCD - ");
-  lcd.begin(16, 2);
-  Serial.println("Success!");
+  // Serial.print("LCD - ");
+  // lcd.begin(16, 2);
+  // Serial.println("Success!");
 
   // Connect to the WiFi network
   connectWifi();
@@ -72,7 +72,7 @@ void setup()
   Serial.println(" - Success!");
 
   // Make url for MTA data request
-  sprintf(url, "https://demo.transiter.dev/systems/us-ny-subway/stops/D25/%s", stationID);
+  sprintf(url, "http://%s:8080/by-id/%s", serverIP, stationID);
 
   delay(1000);
   lcd.clear();
@@ -108,12 +108,7 @@ void loop()
       }
 
       // Pulls out the relevant data as an JSONVar array
-      
-      // !TODO FIX THIS \/
-      // !TODO FIX THIS \/
-      // !TODO FIX THIS \/
-      
-      JSONVar arrivalsArr = obj["data"][direction];
+      JSONVar arrivalsArr = obj["data"][0][direction];
       numberOfArrivals = arrivalsArr.length();
 
       // Initiate a count of arrivals that will be missed per timeToStation
@@ -158,10 +153,10 @@ void loop()
       }
 
       // Display the next arriving train on the first line of the lcd
-      lcd.setCursor(0, 0);
-      lcd.print("                "); // needed to clear the first line
-      lcd.setCursor(0, 0);
-      lcd.print(displayList[0]);
+      // lcd.setCursor(0, 0);
+      // lcd.print("                "); // needed to clear the first line
+      // lcd.setCursor(0, 0);
+      // lcd.print(displayList[0]);
     }
     else
     {
@@ -176,10 +171,10 @@ void loop()
   if (forceRefresh || (millis() - lastDisplayTime) > displayInterval)
   {
 
-    lcd.setCursor(0, 1);
-    lcd.print("                "); // needed to clear the line if the previous display was longer
-    lcd.setCursor(0, 1);
-    lcd.print(displayList[listCount]);
+    // lcd.setCursor(0, 1);
+    // lcd.print("                "); // needed to clear the line if the previous display was longer
+    // lcd.setCursor(0, 1);
+    // lcd.print(displayList[listCount]);
 
     listCount++;
     if (listCount > moreArrivals || listCount >= numberOfArrivals)
@@ -196,11 +191,11 @@ void connectWifi()
   Serial.print("Connecting to Wifi: ");
   Serial.print(ssid);
 
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Joining Wifi");
-  lcd.setCursor(0, 1);
-  lcd.print(ssid);
+  // lcd.clear();
+  // lcd.setCursor(0, 0);
+  // lcd.print("Joining Wifi");
+  // lcd.setCursor(0, 1);
+  // lcd.print(ssid);
 
   WiFi.begin(ssid, password);
 
@@ -208,11 +203,11 @@ void connectWifi()
   {
     delay(500);
     Serial.print(".");
-    lcd.print(".");
+    // lcd.print(".");
   }
 
-  lcd.setCursor(0, 0);
-  lcd.print("Connected to:");
+  // lcd.setCursor(0, 0);
+  // lcd.print("Connected to:");
   Serial.println("Success!");
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
@@ -242,14 +237,27 @@ String httpGETRequest(char *_url)
     Serial.print("HTTP Error code: ");
     Serial.println(httpResponseCode);
 
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("HTTP ERROR: ");
-    lcd.print(httpResponseCode);
-    lcd.setCursor(0, 1);
-    lcd.print("SERVER DOWN");
+    // lcd.clear();
+    // lcd.setCursor(0, 0);
+    // lcd.print("HTTP ERROR: ");
+    // lcd.print(httpResponseCode);
+    // lcd.setCursor(0, 1);
+    // lcd.print("SERVER DOWN");
     delay(1000);
   }
+}
+
+bool isDST(const String &dateTime)
+{
+  if (dateTime.endsWith("-04:00\""))
+  {
+    return true;
+  }
+  else if (dateTime.endsWith("-04:00"))
+  {
+    return true;
+  }
+  return false;
 }
 
 // Manually parses the timeStamp from the train arrival and returns in epoch time
@@ -263,8 +271,14 @@ long convertToEpoch(String timeStamp)
   t.tm_hour = timeStamp.substring(12, 14).toInt();
   t.tm_min = timeStamp.substring(15, 17).toInt();
   t.tm_sec = timeStamp.substring(18, 20).toInt();
-  time_t epoch = mktime(&t);
 
+  // Run a check to see if MTA arrival times are DST or not
+  bool dst = isDST(timeStamp);
+  t.tm_isdst = dst;
+  // Debug:
+  // Serial.println(dst ? "It is DST" : "It is not DST");
+
+  time_t epoch = mktime(&t);
   return epoch;
 }
 
