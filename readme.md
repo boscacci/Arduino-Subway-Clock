@@ -3,49 +3,24 @@
 ![](https://github.com/boscacci/MTA-clock-esp32/blob/main/mta-clock.jpg "Esp32 MTA Clock")
 
 Here's how to do it:
-1. Register for an MTA API key.
-2. Host a server.
-3. Put and run MTA API code on the server.
-4. Buy parts.
-5. Wire it up.
-6. Install some software.
-7. Set up your Arduino project.
-8. Edit your MTA Clock preferences.
-9. Compile and upload the code.
-10. Make an enclosure.
-11. Assemble.
-12. Don't miss your train!
+1. Host a server (to translate the complex MTA API into something more RESTful).
+2. Put and run MTA API code on the server.
+3. Buy parts.
+4. Wire it up.
+5. Install some software.
+6. Set up your Arduino project.
+7. Edit your MTA Clock preferences.
+8. Compile and upload the code.
+9. Make an enclosure.
+10. Assemble.
+11. Don't miss your train!
 
-# 1. Register for an MTA API key.
+# 1. Host a server.
 
-  * Create an account at this URL: https://api.mta.info
-  * Sign in to your account.
-  * At the top, click on "Access Key"
-  * Leave this open for later.
-
-# 2. Host a server.
-
-  * Make an AWS account here (it will want your credit card, but it's free for the first year): https://aws.amazon.com/free/
-  * Log in to your account.
-  * Launch a virtual machine with EC2
-  * Select Ubuntu Server (highest number is fine)
-  * Select the Free Tier Eligible instance type
-  * Click through menus until you reach "Configure Security Group"
-  * Change the "Type" to "All Traffic"
-  * Enable access to ping your server from your personal IP address by googling "my ip address"
-  * Copy your IP address to the Source column, but modify like this: "XX.XX.XXX.0/24"
-  * Name your security group
-  * Review and Launch your Server
-  * Create a new key pair, name it, download it somewhere safe
-  * Launch your server
-  * Connect to your server using SSH client:
-      * Check the box on the server Name
-      * Go to SSH Client tab
-      * Copy the example command, something like: `ssh -i "xxxxxxxx.pem" ubuntu@ec2-xxxxxxxxxx.us-east-2.compute.amazonaws.com`
-      * Open terminal and cd into the directory with your key downloaded earlier
-      * Paste the above command and say "yes" to the dubious message
-      * You're driving a cloud server now!
-
+  * Recommended: Launch a cloud linux instance, e.g. Ubuntu on AWS. (More [verbose instructions here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html])
+  * Configure the instance's network (and security) settings such that it can respond to requests from wherever the subway clock will be.
+  * Connect to your server over SSH.
+      
 # 3. Put and run MTA API code on the server.
 
   * Put the MTA API code on the server by cloning from git repo.
