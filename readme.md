@@ -32,13 +32,7 @@ Here's how to do it:
   * Create a new tmux session (allowing the code to run unattended): `tmux new -s session-name`
   * Activate the virtual environment: `source .venv/bin/activate`
   * Install necessary python libraries: `pip install -r requirements.txt`
-  * Modify the settings.cfg file to include your personal API Key.
-      * Open the file in a terminal text editor: `vim settings.cfg`
-      * Go back to your API Key from before and copy it
-      * Press `a` to enter insert mode and replace 'your-api-key-here' with your API key
-      * Press `esc` to go back to command mode
-      * Enter the command: `:wq` to save and quit the text editor
-  * Launch the service and begin listening for requests: `flask run --host=0.0.0.0 --port=8080`
+  * Launch the service and begin listening for requests: `python app.py`
   * Detach from the tmux session: ctrl-b, then press d key
   * Disconnect from the ec2 server: `logout`
   * It should be running on its own now!
